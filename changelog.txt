@@ -1,0 +1,14 @@
+1.1.0 (2021-01-06) - První repo verze 
+
+1.0.4 (2020-12-14) - Zlepšena úspěšnost hledání v archivu
+
+1.0.3 (2020-11-04) - Změněno id doplňku podle konvence repozitáře XBMC-Kodi CZ/SK
+                   - Optimalizace parsování data
+
+1.0.2              - Opraveno přehrávání z archivu některých pořadů (např. Pokračování za chvilku)
+
+1.0.1              - Přidána loga regionálních stanic
+
+1.0.0              - První veřejná verze
+
+

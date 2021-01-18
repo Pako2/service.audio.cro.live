@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="service.audio.cro.live" name="ČRo Live" version="1.1.0" provider-name="listener">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+    </requires>
+    <extension library="service.py" point="xbmc.service">
+        <provides>audio</provides>
+    </extension>
+    <extension point="kodi.context.item">
+        <menu id="kodi.core.main">
+            <item library="playarch.py">
+                <label>30301</label>
+                <visible>
+                    Window.IsActive(radioguide)|Window.IsActive(radiosearch)
+                </visible>
+            </item>
+            <item library="downarch.py">
+                <label>30302</label>
+                <visible>
+                    Window.IsActive(radioguide)|Window.IsActive(radiosearch)
+                </visible>
+            </item>
+        </menu>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en_GB">ČRo Live - Playlist and EPG</summary>
+        <description lang="en_GB">Service for generating playlists and EPG of ČRo stations</description>
+        <summary lang="cs_CZ">ČRo Live - Playlist a EPG</summary>
+        <description lang="cs_CZ">Služba pro generování playlistu a EPG stanic ČRo</description>
+        <license>MIT License</license>
+        <language>cs_CZ</language>
+        <assets>
+            <icon>CRoLive-icon.png</icon>
+            <fanart>CRoLive-fanart.png</fanart>
+        </assets>
+        <news>
+            1.1.0 (2021-01-06)
+            - První repo verze
+            1.0.4 (2020-12-14)
+            - Zlepšena úspěšnost hledání v archivu
+            1.0.3 (2020-11-04)
+            - Změněno id doplňku podle konvence repozitáře XBMC-Kodi CZ/SK
+            - Optimalizace parsování data
+        </news>
+    </extension>
+</addon>
