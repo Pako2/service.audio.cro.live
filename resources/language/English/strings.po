@@ -1,0 +1,123 @@
+# Kodi Media Center language file
+# Addon Name: ČRo Live
+# Addon id: service.audio.cro.live
+# Addon Provider: listener
+msgid ""
+msgstr ""
+
+# Settings
+msgctxt "#30000"
+msgid "Complete"
+msgstr ""
+
+msgctxt "#30101"
+msgid "Playlist and EPG folder"
+msgstr ""
+
+msgctxt "#30102"
+msgid "Playlist file name"
+msgstr ""
+
+msgctxt "#30103"
+msgid "EPG file name"
+msgstr ""
+
+msgctxt "#30104"
+msgid "Preferred birate (kbit/s)"
+msgstr ""
+
+msgctxt "#30105"
+msgid "EPG generation interval (hours)"
+msgstr ""
+
+msgctxt "#30106"
+msgid "EPG - past days to display"
+msgstr ""
+
+msgctxt "#30107"
+msgid "EPG - future days to display"
+msgstr ""
+
+msgctxt "#30108"
+msgid "Folder for storing downloaded files"
+msgstr ""
+
+msgctxt "#30109"
+msgid "Enable debug logging"
+msgstr ""
+
+msgctxt "#30110"
+msgid "Enable notification of background events"
+msgstr ""
+
+msgctxt "#30116"
+msgid "Pay attention to the appropriate Kodi settings - PVR & Live TV - Guide"
+msgstr ""
+
+msgctxt "#30117"
+msgid "Pay attention to the appropriate Kodi settings - PVR & Live TV - Guide"
+msgstr ""
+
+msgctxt "#30201"
+msgid "Playlist and EPG have been updated !"
+msgstr ""
+
+msgctxt "#30202"
+msgid "Playlist and EPG were not updated !"
+msgstr ""
+
+msgctxt "#30203"
+msgid "Regional"
+msgstr ""
+
+msgctxt "#30204"
+msgid "Allover"
+msgstr ""
+
+msgctxt "#30301"
+msgid "*   Play from archive   *"
+msgstr ""
+
+msgctxt "#30302"
+msgid "*   Download from archive   *"
+msgstr ""
+
+msgctxt "#30401"
+msgid "There are only shows in the archive,\n that have already been broadcast !"
+msgstr "V archívu jsou jen pořady,\n které už byly odvysílány !"
+
+msgctxt "#30402"
+msgid "The selected program could not be reliably determined.\nThis often happens when using the mouse,\nbut should not happen when using the keyboard\nor a remote control.  Please try again !"
+msgstr ""
+
+msgctxt "#30403"
+msgid "Sorry, the selected show was not found in the archive."
+msgstr ""
+
+msgctxt "#30404"
+msgid "Sorry, this show may not have been archived."
+msgstr ""
+
+msgctxt "#30405"
+msgid "The response from the server has an unexpected structure."
+msgstr ""
+
+msgctxt "#30406"
+msgid "Download of '%s' has started."
+msgstr ""
+
+msgctxt "#30407"
+msgid "The file '%s' has been saved."
+msgstr ""
+
+msgctxt "#30408"
+msgid "The file '%s' was not saved."
+msgstr ""
+
+msgctxt "#30409"
+msgid "The selected show has limited rights\nand downloads are not allowed!"
+msgstr ""
+
+msgctxt "#30410"
+msgid "Unexpectedly, more than one matching record\nwas found in the archive. The first one was chosen."
+msgstr "V archivu bylo nečekaně nalezeno více než jeden\nodpovídajících záznamů. Vybrán byl první z nich."
