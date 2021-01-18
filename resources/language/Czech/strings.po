@@ -1,0 +1,123 @@
+# Kodi Media Center language file
+# Addon Name: ČRo Live
+# Addon id: service.audio.cro.live
+# Addon Provider: listener
+msgid ""
+msgstr ""
+
+# Settings
+msgctxt "#30000"
+msgid "Complete"
+msgstr "Kompletní"
+
+msgctxt "#30101"
+msgid "Playlist and EPG folder"
+msgstr "Adresář pro playlist a EPG"
+
+msgctxt "#30102"
+msgid "Playlist file name"
+msgstr "Jméno souboru playlistu"
+
+msgctxt "#30103"
+msgid "EPG file name"
+msgstr "Jméno souboru EPG"
+
+msgctxt "#30104"
+msgid "Preferred birate (kbit/s)"
+msgstr "Preferovaný bitrate (kbit/s)"
+
+msgctxt "#30105"
+msgid "EPG generation interval (hours)"
+msgstr "Interval pro generování EPG (hod.)"
+
+msgctxt "#30106"
+msgid "EPG - past days to display"
+msgstr "EPG - minulých dnů k zobrazení"
+
+msgctxt "#30107"
+msgid "EPG - future days to display"
+msgstr "EPG - budoucích dnů k zobrazení"
+
+msgctxt "#30108"
+msgid "Folder for storing downloaded files"
+msgstr "Složka pro ukládání stažených souborů"
+
+msgctxt "#30109"
+msgid "Enable debug logging"
+msgstr "Povolit protokolování ladění"
+
+msgctxt "#30110"
+msgid "Enable notification of background events"
+msgstr "Povolit oznamování událostí, probíhajících na pozadí"
+
+msgctxt "#30116"
+msgid "Pay attention to the appropriate Kodi settings - PVR & Live TV - Guide"
+msgstr "Pozor na odpovídající nastavení Kodi - PVR a Živé vysílání - Televizní program !"
+
+msgctxt "#30117"
+msgid "Pay attention to the appropriate Kodi settings - PVR & Live TV - Guide"
+msgstr "Pozor na odpovídající nastavení Kodi - PVR a Živé vysílání - Televizní program !"
+
+msgctxt "#30201"
+msgid "Playlist and EPG have been updated !"
+msgstr "Playlist a EPG byly obnoveny !"
+
+msgctxt "#30202"
+msgid "Playlist and EPG were not updated !"
+msgstr "Playlist a EPG nebyly obnoveny !"
+
+msgctxt "#30203"
+msgid "Regional"
+msgstr "Regionální"
+
+msgctxt "#30204"
+msgid "Allover"
+msgstr "Celoplošné"
+
+msgctxt "#30301"
+msgid "*   Play from archive   *"
+msgstr "*   Přehrát z archivu   *"
+
+msgctxt "#30302"
+msgid "*   Download from archive   *"
+msgstr "*   Stáhnout z archivu   *"
+
+msgctxt "#30401"
+msgid "There are only shows in the archive,\n that have already been broadcast !"
+msgstr "V archivu jsou jen pořady,\n které už byly odvysílány !"
+
+msgctxt "#30402"
+msgid "The selected program could not be reliably determined.\nThis often happens when using the mouse,\nbut should not happen when using the keyboard\nor a remote control.  Please try again !"
+msgstr "Nebylo možné spolehlivě určit vybraný pořad.\nTo se stává při použití myši,\nale nemělo by se to stávat při použití klávesnice\nnebo dálkového ovládání.  Prosím zkuste to znovu !"
+
+msgctxt "#30403"
+msgid "Sorry, the selected show was not found in the archive."
+msgstr "Je nám líto, ale vybraný pořad nebyl v archivu nalezen."
+
+msgctxt "#30404"
+msgid "Sorry, this show may not have been archived."
+msgstr "Je nám líto, ale tento pořad se pravděpodobně nearchivuje."
+
+msgctxt "#30405"
+msgid "The response from the server has an unexpected structure."
+msgstr "Odpověď od serveru má neočekávanou strukturu."
+
+msgctxt "#30406"
+msgid "Download of '%s' has started."
+msgstr "Začalo stahování souboru\n'%s'."
+
+msgctxt "#30407"
+msgid "The file '%s' has been saved."
+msgstr "Soubor '%s' byl uložen."
+
+msgctxt "#30408"
+msgid "The file '%s' was not saved."
+msgstr "Soubor '%s' nebyl uložen."
+
+msgctxt "#30409"
+msgid "The selected show has limited rights\nand downloads are not allowed!"
+msgstr "Vybraný pořad má omezená práva\na není povoleno jeho stahování !"
+
+msgctxt "#30410"
+msgid "Unexpectedly, more than one matching record\nwas found in the archive. The first one was chosen."
+msgstr "V archivu bylo nečekaně nalezeno více než jeden\nodpovídajících záznamů. Vybrán byl první z nich."
