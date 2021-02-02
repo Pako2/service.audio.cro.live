@@ -1,0 +1,8 @@
+version: "1"
+rules:
+  - base: master
+    upstream: Pako2:master
+    mergeMethod: hardreset
+  - base: leia
+    upstream: Pako2:leia
+    mergeMethod: hardreset
