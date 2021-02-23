@@ -120,4 +120,9 @@ msgstr ""
 
 msgctxt "#30410"
 msgid "Unexpectedly, more than one matching record\nwas found in the archive. The first one was chosen."
-msgstr "V archivu bylo nečekaně nalezeno více než jeden\nodpovídajících záznamů. Vybrán byl první z nich."
+msgstr ""
+
+msgctxt "#30500"
+msgid "This add-on is a service only and does not provide any playable content."
+msgstr ""
+
