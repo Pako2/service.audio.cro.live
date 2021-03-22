@@ -1,3 +1,5 @@
+1.2.1 (2021-03-22) - Opravena chyba - zlepšeno hledání v archivu
+
 1.2.0 (2021-02-23) - Přidána podpora IPTV Merge
 
 1.1.0 (2021-01-06) - První repo verze 
@@ -12,5 +14,3 @@
 1.0.1              - Přidána loga regionálních stanic
 
 1.0.0              - První veřejná verze
-
-
