@@ -56,16 +56,13 @@ def getep(showid, since):
         resb = []
 #        resc = []
         limit = 30
-        #sinceb = since[:-3]
-        #sincec = since[:-6]
         since = since[:-3]
-        sinceb = since[:-6]
+        sinceb = since[:-3]
         for i in range(0, count, limit):
             epdata = getepisodes(showid, i, limit)
             if 'data' in epdata:
                 data = epdata['data']
                 for itm in data:
-                    #_since = itm['attributes']['since'][:-9]
                     _since = itm['attributes']['since'][:-12]
                     if _since == since:
                         res.append(itm)
@@ -185,15 +182,11 @@ def get_audio(kind):
                                     if 'attributes' in epi:
                                         part = total = 0
                                         attrs = epi['attributes']
-                                        if len(epis) > 1:
-                                            descr = attrs['description'].replace('<p>','').replace('</p>','').replace('&nbsp;',' ')
-                                            title = attrs['title']
-                                            if 'part' in attrs and 'mirroredSerial' in attrs and 'totalParts' in attrs['mirroredSerial']:
-                                                part = attrs['part']
-                                                total = attrs['mirroredSerial']['totalParts']
-                                        else:
-                                            descr = plot
-                                            title = label
+                                        descr = attrs['description'].replace('<p>','').replace('</p>','').replace('<br>','').replace('&nbsp;',' ')
+                                        title = attrs['title']
+                                        if 'part' in attrs and 'mirroredSerial' in attrs and 'totalParts' in attrs['mirroredSerial']:
+                                            part = attrs['part']
+                                            total = attrs['mirroredSerial']['totalParts']
                                         if 'asset' in attrs and 'url' in attrs['asset'] and attrs['asset']['url']:
                                             icon = attrs['asset']['url']
                                         if 'audioLinks' in attrs:
