@@ -138,7 +138,8 @@ def get_audio(kind):
                     ep1b = [i for i in data if i['attributes']['since'][:-9] == since and encode(i['attributes']['title']) == label]
                     ep2b = [i for i in data if i['attributes']['since'][:-12] == since[:-3] and encode(i['attributes']['title']) == label]
                     ep3b = [i for i in data if i['attributes']['since'][:-15] == since[:-6] and encode(i['attributes']['title']) == label]
-                    ep = ep1a if ep1a else ep1b if ep1b else ep2a if ep2a else ep2b if ep2b else ep3a if ep3a else ep3b
+                    ep1c = [i for i in data if i['attributes']['since'][:-9] == since]
+                    ep = ep1a if ep1a else ep1b if ep1b else ep2a if ep2a else ep2b if ep2b else ep3a if ep3a else ep3b if ep3b else ep1c
                     if len(ep) > 1:
                         notify(LANG(30410))
                     ep = ep[0] if len(ep) else None
@@ -166,6 +167,9 @@ def get_audio(kind):
                                     title = ep['attributes']['title']
                                     log("title  = " + title)
                                     showid = findshowid(statid, title)
+                                    if not showid:
+                                        title = label
+                                        showid = findshowid(statid, title)
                         else:
                             notify(LANG(30405))
                             return
