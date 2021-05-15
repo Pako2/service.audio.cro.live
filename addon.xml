@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="service.audio.cro.live" name="ČRo Live" version="1.2.1" provider-name="listener">
+<addon id="service.audio.cro.live" name="ČRo Live" version="1.2.2" provider-name="listener">
     <requires>
-        <import addon="xbmc.python" version="2.24.0"/>
+        <import addon="xbmc.python" version="3.0.0"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="plugin.py" provides="audio">
         <provides>audio</provides>
@@ -38,6 +38,8 @@
             <fanart>CRoLive-fanart.png</fanart>
         </assets>
         <news>
+            1.2.2 (2021-05-15)
+            - Přizpůsobení změnám v API Českého rozhlasu
             1.2.1 (2021-03-22)
             - Opravena chyba - zlepšeno hledání v archivu
             1.2.0 (2021-02-23)
