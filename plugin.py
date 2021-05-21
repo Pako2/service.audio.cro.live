@@ -44,7 +44,7 @@ if method in ('epg', 'playlist'):
     except Exception as e:
         message = str(e)
     else:
-        message = 'ok'
+        message = '1'
 
     xbmcplugin.addDirectoryItem(handle, quote(message), xbmcgui.ListItem())
     xbmcplugin.endOfDirectory(handle, succeeded=True)
