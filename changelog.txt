@@ -1,3 +1,5 @@
+1.2.3 (2021-05-21) - Oprava - nová stanice Radiožurnál Sport způsobuje chybu (již je v playlistu, ale není v EPG)
+
 1.2.2 (2021-05-15) - Přizpůsobení změnám v API Českého rozhlasu
 
 1.2.1 (2021-03-22) - Opravena chyba - zlepšeno hledání v archivu

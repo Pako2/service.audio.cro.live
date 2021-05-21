@@ -109,15 +109,16 @@ def convert(stats, epg, epgfile):
         # load data of one channel to temporary list
         tmpday = []
         for day in epg:
-            for item in day[stat[0]]:
-                tmpprog = {}
-                tmpprog['title'] = item['title']
-                tmpprog['description'] = item['description']
-                if 'edition' in item and 'asset' in item['edition']:
-                    tmpprog['icon'] = item['edition']['asset']
-                tmpprog['start'] = item['since']
-                tmpprog['stop'] = item['till']
-                tmpday.append(tmpprog)
+            if stat[0] in day:
+                for item in day[stat[0]]:
+                    tmpprog = {}
+                    tmpprog['title'] = item['title']
+                    tmpprog['description'] = item['description']
+                    if 'edition' in item and 'asset' in item['edition']:
+                        tmpprog['icon'] = item['edition']['asset']
+                    tmpprog['start'] = item['since']
+                    tmpprog['stop'] = item['till']
+                    tmpday.append(tmpprog)
         # check and repair time continuity
         tmpday2 = []
         flag = False
