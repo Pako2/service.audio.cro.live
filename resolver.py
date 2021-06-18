@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 import sys
 import xbmc
-from xbmcgui import Dialog
-import xbmcaddon
-from os.path import join, isfile
+from os.path import isfile
 from codecs import open as codecs_open
 from json import loads
-from datetime import datetime as dt
-from service import addon, LANG, addonname, encode, decode
+from service import LANG, addonname, encode, decode
 from service import PY3, dictfile, jsonrequest, log, notify
+from bs4 import BeautifulSoup
 
 base_url = "https://api.mujrozhlas.cz/"
 
@@ -186,7 +184,7 @@ def get_audio(kind):
                                     if 'attributes' in epi:
                                         part = total = 0
                                         attrs = epi['attributes']
-                                        descr = attrs['description'].replace('<p>','').replace('</p>','').replace('<br>','').replace('&nbsp;',' ')
+                                        descr = BeautifulSoup(attrs['description'], "html.parser").text
                                         title = attrs['title']
                                         if 'part' in attrs and 'mirroredSerial' in attrs and 'totalParts' in attrs['mirroredSerial']:
                                             part = attrs['part']
