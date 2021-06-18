@@ -1,11 +1,9 @@
 import sys
-#import codecs
-#from xml.sax.saxutils import escape
 
-import xbmc, xbmcplugin, xbmcgui, xbmcaddon
-from os.path import isfile
-#from codecs import open as codecs_open
-from service import m3ufile, epgfile, LANG, addonname, PY3
+import xbmcplugin, xbmcgui
+from service import stations_url, api_url, pastdays, futudays, LANG, addonname, PY3
+from service import jsonrequest, get_date_range, create_m3u,  get_stations, convert
+
 
 if PY3:
     #Python3
@@ -21,30 +19,45 @@ handle = int(sys.argv[1])
 
 
 def write_playlist(filepath):
-    if isfile(m3ufile):
-        with open(m3ufile, 'rb') as rf:
-            data = rf.read()
-            with open(filepath, 'wb') as f:
-                f.write(data)
+    jsondata = jsonrequest(stations_url)
+    if jsondata and 'data' in jsondata:
+        stations = get_stations(jsondata['data'])
+        if not stations:
+            return "ERROR 1"
+        create_m3u(stations, filepath)
+        return "1"
+
 
 def write_epg(filepath):
-    if isfile(epgfile):
-        with open(epgfile, 'rb') as rf:
-            data = rf.read()
-            with open(filepath, 'wb') as f:
-                f.write(data)
+    jsondata = jsonrequest(stations_url)
+    if jsondata and 'data' in jsondata:
+        stations = get_stations(jsondata['data'])
+        if not stations:
+            return "ERROR 1"
+        epg = []
+        for d in get_date_range(pastdays, futudays):
+            url = api_url + "schedule/day/" + d + ".json"
+            jsondata = jsonrequest(url)
+            if jsondata and 'data' in jsondata:
+                epg.append(jsondata['data'])
+        if epg:
+            stats = [(i[0],i[1]) for i in stations]
+            convert(stats, epg, filepath)
+            return "1"
+    return "ERROR 2"
+
 
 
 if method in ('epg', 'playlist'):
+    message = 'ERROR 0'
     try:
         if method == 'epg':
-            write_epg(params.get('output'))
+            message = write_epg(params.get('output'))
         elif method == 'playlist':
-            write_playlist(params.get('output'))
+            message = write_playlist(params.get('output'))
     except Exception as e:
         message = str(e)
-    else:
-        message = '1'
+
 
     xbmcplugin.addDirectoryItem(handle, quote(message), xbmcgui.ListItem())
     xbmcplugin.endOfDirectory(handle, succeeded=True)
