@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
     <category label="30000">
-        <setting label="30101" type="folder" id="folder" source="local" default="" />
-        <setting label="30102" type="text" id="playlist" default="cro_playlist.m3u"/>
-        <setting label="30103" type="text" id="epg" default="cro_epg.xml"/>
-        <setting label="30105" type="enum" id="period" values="12|24|36|48|60|72" default="1"/>
+        <setting label="30105" type="enum" id="period" values="12|24|36|48|60|72|0" default="1"/>
+        <setting label="30101" type="folder" id="folder" source="local" enable="!eq(-1,6)" default="" />
+        <setting label="30102" type="text" id="playlist" enable="!eq(-2,6)" default="cro_playlist.m3u"/>
+        <setting label="30103" type="text" id="epg" enable="!eq(-3,6)" default="cro_epg.xml"/>
         <setting label="30106" help="30116" type="enum" id="pastdays" values="1|2|3|4|5|6|7|8|9|10|11|12|13|14" default="6"/>
         <setting label="30107" help="30117" type="enum" id="futudays" values="1|2|3|4|5|6|7|8|9|10|11|12|13|14" default="6"/>
         <setting label="30104" type="enum" id="bitrate" values="128|256" default="1"/>
