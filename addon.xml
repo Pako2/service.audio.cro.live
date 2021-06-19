@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="service.audio.cro.live" name="ČRo Live" version="1.3.0" provider-name="listener">
+<addon id="service.audio.cro.live" name="ČRo Live" version="1.3.1" provider-name="listener">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.beautifulsoup4" version="4.6.2" />
@@ -39,23 +39,25 @@
             <fanart>CRoLive-fanart.png</fanart>
         </assets>
         <news>
-            1.3.0 (2021-06-18)
-            - Playlist a EPG mohou být generovány nejen periodicky, ale i na vyžádání (např. doplňkem IPTV Merge)
-            1.2.3 (2021-05-21)
-            - Oprava - nová stanice Radiožurnál Sport způsobuje chybu (již je v playlistu, ale není v EPG)
-            1.2.2 (2021-05-15)
-            - Přizpůsobení změnám v API Českého rozhlasu
-            1.2.1 (2021-03-22)
-            - Opravena chyba - zlepšeno hledání v archivu
-            1.2.0 (2021-02-23)
-            - Přidána podpora IPTV Merge
-            1.1.0 (2021-01-06)
-            - První repo verze
-            1.0.4 (2020-12-14)
-            - Zlepšena úspěšnost hledání v archivu
-            1.0.3 (2020-11-04)
-            - Změněno id doplňku podle konvence repozitáře XBMC-Kodi CZ/SK
-            - Optimalizace parsování data
+1.3.1 (2021-06-19)
+  - Opravena chyba - nefunguje přehrávání z archivu
+1.3.0 (2021-06-18)
+  - Playlist a EPG mohou být generovány nejen periodicky, ale i na vyžádání (např. doplňkem IPTV Merge)
+1.2.3 (2021-05-21)
+  - Oprava - nová stanice Radiožurnál Sport způsobuje chybu (již je v playlistu, ale není v EPG)
+1.2.2 (2021-05-15)
+  - Přizpůsobení změnám v API Českého rozhlasu
+1.2.1 (2021-03-22)
+  - Opravena chyba - zlepšeno hledání v archivu
+1.2.0 (2021-02-23)
+  - Přidána podpora IPTV Merge
+1.1.0 (2021-01-06)
+  - První repo verze
+1.0.4 (2020-12-14)
+  - Zlepšena úspěšnost hledání v archivu
+1.0.3 (2020-11-04)
+  - Změněno id doplňku podle konvence repozitáře XBMC-Kodi CZ/SK
+  - Optimalizace parsování data
         </news>
     </extension>
 </addon>
