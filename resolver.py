@@ -1,20 +1,11 @@
 # -*- coding: utf-8 -*-
 import sys
 import xbmc
-from os.path import isfile
-from codecs import open as codecs_open
-from json import loads
-from service import LANG, addonname, encode, decode
-from service import PY3, dictfile, jsonrequest, log, notify
+from service import LANG, addonname, encode, decode, stations_url
+from service import PY3, jsonrequest, log, notify
 from bs4 import BeautifulSoup
 
 base_url = "https://api.mujrozhlas.cz/"
-
-if isfile(dictfile):
-    f = codecs_open(dictfile, 'r', encoding = "utf-8")
-    data = f.read()
-    chann_dict = loads(data)
-    f.close()
 
 def okdialog(message):
     if PY3:
@@ -106,6 +97,17 @@ def findshowid(statid, title):
     return ''
 
 def get_audio(kind):
+    chann_dict = {}
+    jsondata = jsonrequest(stations_url)
+    if jsondata and 'data' in jsondata:
+        stations = jsondata['data']
+        for i in stations:
+            if 'type' in i and 'attributes' in i and 'id' in i and i['type'] == 'station':
+                if 'shortTitle' in i['attributes']:
+                    chann_dict[i['attributes']['shortTitle']]=i['id']
+    else:
+        notify(LANG(30405))
+        return
     if sys.listitem.getPath() != xbmc.getInfoLabel('ListItem.FolderPath'):
         okdialog(LANG(30402))
         return

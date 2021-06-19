@@ -5,7 +5,6 @@ import xbmcgui
 import xbmcaddon
 from xml.dom import minidom as miniDom
 from codecs import open as codecs_open
-from xbmc import Monitor
 from datetime import datetime as dt
 from datetime import timedelta as td
 from json import loads
@@ -61,15 +60,17 @@ def get_links(links, br):
     return res[0]['url']
 
 
-def get_stations(data):
+def get_stations():
     lst = []
-    for i in data:
-        if 'type' in i and 'attributes' in i and 'id' in i and i['type'] == 'station':
-            attrs = i['attributes']
-            icon = attrs['asset']['url'] if 'asset' in attrs and 'url' in attrs['asset'] else 'special://home/addons/service.audio.cro.live/resources/logos/%s.jpg' % attrs['code']
-            if 'code' in attrs and 'shortTitle' in attrs and 'stationType' in attrs and 'audioLinks' in attrs:
-                tmp = (attrs['code'], attrs['shortTitle'], attrs['stationType'], get_links(attrs['audioLinks'], bitrate), icon)
-                lst.append(tmp)
+    jsondata = jsonrequest(stations_url)
+    if jsondata and 'data' in jsondata:
+        for i in jsondata['data']:
+            if 'type' in i and 'attributes' in i and 'id' in i and i['type'] == 'station':
+                attrs = i['attributes']
+                icon = attrs['asset']['url'] if 'asset' in attrs and 'url' in attrs['asset'] else 'special://home/addons/service.audio.cro.live/resources/logos/%s.jpg' % attrs['code']
+                if 'code' in attrs and 'shortTitle' in attrs and 'stationType' in attrs and 'audioLinks' in attrs:
+                    tmp = (attrs['code'], attrs['shortTitle'], attrs['stationType'], get_links(attrs['audioLinks'], bitrate), icon)
+                    lst.append(tmp)
     return lst
 
 
@@ -208,28 +209,26 @@ def jsonrequest(url):
     except Exception as e:
         log(repr(e))
 
+
 def run():
-    url = stations_url
-    jsondata = jsonrequest(url)
-    if jsondata and 'data' in jsondata:
-        stations = get_stations(jsondata['data'])
-        if not stations:
-            return 1
-        create_m3u(stations)
-        epg = []
-        for d in get_date_range(pastdays, futudays):
-            url = api_url + "schedule/day/" + d + ".json"
-            jsondata = jsonrequest(url)
-            if jsondata and 'data' in jsondata:
-                epg.append(jsondata['data'])
-        if epg:
-            stats = [(i[0],i[1]) for i in stations]
-            convert(stats, epg)
-            return 0
+    stations = get_stations()
+    if not stations:
+        return 1
+    create_m3u(stations)
+    epg = []
+    for d in get_date_range(pastdays, futudays):
+        url = api_url + "schedule/day/" + d + ".json"
+        jsondata = jsonrequest(url)
+        if jsondata and 'data' in jsondata:
+            epg.append(jsondata['data'])
+    if epg:
+        stats = [(i[0],i[1]) for i in stations]
+        convert(stats, epg)
+        return 0
     return 2
 
 
-class BackgroundService(Monitor):
+class BackgroundService(xbmc.Monitor):
 
     def __init__(self):
         log('service started', False)
