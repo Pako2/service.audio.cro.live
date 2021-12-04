@@ -53,7 +53,7 @@ def get_links(links, br):
     res = []
     for l in links:
         if 'quality' in l and 'linkType' in l and 'variant' in l and 'url' in l:
-            if l['url'] and l['quality'] == 'normal' and l['linkType'] == 'directstream' and l['variant'] == 'mp3':
+            if l['url'] and l['quality'] == 'normal' and l['linkType'] == 'directstream' and l['variant'] in ('mp3', 'aac'):
                res.append(l)
     select = [i for i in res if i['bitrate'] == br]
     res = select if select else res
