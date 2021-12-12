@@ -22,10 +22,6 @@ msgctxt "#30103"
 msgid "EPG file name"
 msgstr ""
 
-msgctxt "#30104"
-msgid "Preferred birate (kbit/s)"
-msgstr ""
-
 msgctxt "#30105"
 msgid "EPG generation interval (hours)"
 msgstr ""
@@ -56,6 +52,30 @@ msgstr ""
 
 msgctxt "#30117"
 msgid "Pay attention to the appropriate Kodi settings - PVR & Live TV - Guide"
+msgstr ""
+
+msgctxt "#30118"
+msgid "Preferred codec"
+msgstr ""
+
+msgctxt "#30119"
+msgid "Preferred Quality"
+msgstr ""
+
+msgctxt "#30120"
+msgid "Highest"
+msgstr ""
+
+msgctxt "#30121"
+msgid "Medium"
+msgstr ""
+
+msgctxt "#30122"
+msgid "Lowest"
+msgstr ""
+
+msgctxt "#30123"
+msgid "If available, use FLAC (lossless codec)"
 msgstr ""
 
 msgctxt "#30201"
