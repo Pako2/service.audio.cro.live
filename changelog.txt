@@ -1,3 +1,7 @@
+1.4.0 (2021-12-12) - Možnost výběru preferovaného kodeku (MP3 nebo AAC)
+                   - Kvalita (bitrate) se volí z možností Nejvyšší|Střední|Nejnižší
+                   - Pro nejvyšší kvalitu je možné povolit stream typu FLAC (je-li k dispozici)
+
 1.3.2 (2021-12-04) - Opravena chyba - kromě mp3 je nyní akceptován i stream typu aac
 
 1.3.1 (2021-06-19) - Opravena chyba - nefunguje přehrávání z archivu
