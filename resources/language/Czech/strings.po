@@ -22,10 +22,6 @@ msgctxt "#30103"
 msgid "EPG file name"
 msgstr "Jméno souboru EPG"
 
-msgctxt "#30104"
-msgid "Preferred birate (kbit/s)"
-msgstr "Preferovaný bitrate (kbit/s)"
-
 msgctxt "#30105"
 msgid "EPG generation interval (hours)"
 msgstr "Interval pro generování EPG (hod.)"
@@ -57,6 +53,30 @@ msgstr "Pozor na odpovídající nastavení Kodi - PVR a Živé vysílání - Te
 msgctxt "#30117"
 msgid "Pay attention to the appropriate Kodi settings - PVR & Live TV - Guide"
 msgstr "Pozor na odpovídající nastavení Kodi - PVR a Živé vysílání - Televizní program !"
+
+msgctxt "#30118"
+msgid "Preferred codec"
+msgstr "Preferovaný kodek"
+
+msgctxt "#30119"
+msgid "Preferred Quality"
+msgstr "Preferovaná kvalita (bitrate)"
+
+msgctxt "#30120"
+msgid "Highest"
+msgstr "Nejvyšší"
+
+msgctxt "#30121"
+msgid "Medium"
+msgstr "Střední"
+
+msgctxt "#30122"
+msgid "Lowest"
+msgstr "Nejnižší"
+
+msgctxt "#30123"
+msgid "If available, use FLAC (lossless codec)"
+msgstr "Je-li k dispozici, použít FLAC (bezztrátový kodek)"
 
 msgctxt "#30201"
 msgid "Playlist and EPG have been updated !"
