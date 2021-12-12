@@ -29,7 +29,7 @@ if plist:
             filename = '%s_%s_%s[%i]%s' % (channel, itm[2], decode(_label), i, file_ext)
         else:
             filename = '%s_%s_%s%s' % (channel, itm[2], decode(_label), file_ext)
-        localfile  = join(addon.getSetting('downfolder'), filename).encode('utf-8')
+        localfile  = join(addon().getSetting('downfolder'), filename).encode('utf-8')
 
         req = Request(itm[0], headers = headers)
         code = 0

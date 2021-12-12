@@ -19,22 +19,27 @@ if PY3:
 else:
     from urllib2 import Request, urlopen, HTTPError
 
-addon       = xbmcaddon.Addon(id = 'service.audio.cro.live')
-addonname   = addon.getAddonInfo('name')
+def addon():
+    return xbmcaddon.Addon(id = 'service.audio.cro.live')
+
+addonname   = addon().getAddonInfo('name')
 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:75.0) Gecko/20100101 Firefox/75.0", "Content-Type":"application/json"}
 api_url = "https://api.rozhlas.cz/data/v2/"
 stations_url = "https://api.mujrozhlas.cz/stations"
-bitrate = 128 * (1 + int(addon.getSetting('bitrate')))
-pastdays = int(addon.getSetting('pastdays'))
-futudays = int(addon.getSetting('futudays'))
-val = int(addon.getSetting('period'))
+codec = int(addon().getSetting('codec'))
+quality = int(addon().getSetting('quality'))
+flac = addon().getSetting('flac') == 'true'
+
+pastdays = int(addon().getSetting('pastdays'))
+futudays = int(addon().getSetting('futudays'))
+val = int(addon().getSetting('period'))
 period = 12 * (1 + val) if val < 6 else 0
-m3ufile  = join(addon.getSetting('folder'), addon.getSetting('playlist'))
-epgfile  = join(addon.getSetting('folder'), addon.getSetting('epg'))
+m3ufile  = join(addon().getSetting('folder'), addon().getSetting('playlist'))
+epgfile  = join(addon().getSetting('folder'), addon().getSetting('epg'))
 
 
 def LANG(id):
-    return addon.getLocalizedString(id)
+    return addon().getLocalizedString(id)
 
 def decode(txt):
     return txt if PY3 or isinstance(txt, unicode) else txt.decode('utf-8')
@@ -49,16 +54,38 @@ def get_date_range(pds, fds):
     base = dt.today()
     return [str((base + td(days = x)).date()).replace('-','/') for x in range(-pds, fds)]
 
-def get_links(links, br):
+def get_url(data, kind):
+    tmp = []
+    select = [i for i in data if i['variant'] == kind and i['quality'] != 'flac']
+    if select:
+        if quality == 2:
+            tmp = max(select, key=lambda p: p['bitrate'])
+        elif quality == 0:
+            tmp = min(select, key=lambda p: p['bitrate'])
+        else:           
+            select.sort(key=lambda p: p['bitrate'])
+            tmp = select[int(len(select)/2)]
+    return tmp
+
+def get_links(links):
     res = []
     for l in links:
         if 'quality' in l and 'linkType' in l and 'variant' in l and 'url' in l:
-            if l['url'] and l['quality'] == 'normal' and l['linkType'] == 'directstream' and l['variant'] in ('mp3', 'aac'):
+            if l['url'] and l['linkType'] == 'directstream':
                res.append(l)
-    select = [i for i in res if i['bitrate'] == br]
-    res = select if select else res
-    return res[0]['url']
-
+    tmp = []
+    if quality == 2 and flac:
+        tmp = [i for i in res if i['quality'] == 'flac']
+        if tmp:
+            tmp = tmp[0]
+    if not tmp and codec == 1:
+        tmp = get_url(res, 'aac')
+    if not tmp:
+        tmp = get_url(res, 'mp3')
+    if not tmp and codec == 0:
+        tmp = get_url(res, 'aac')
+    if tmp:
+        return tmp['url']
 
 def get_stations():
     lst = []
@@ -69,10 +96,11 @@ def get_stations():
                 attrs = i['attributes']
                 icon = attrs['asset']['url'] if 'asset' in attrs and 'url' in attrs['asset'] else 'special://home/addons/service.audio.cro.live/resources/logos/%s.jpg' % attrs['code']
                 if 'code' in attrs and 'shortTitle' in attrs and 'stationType' in attrs and 'audioLinks' in attrs:
-                    tmp = (attrs['code'], attrs['shortTitle'], attrs['stationType'], get_links(attrs['audioLinks'], bitrate), icon)
-                    lst.append(tmp)
+                    url = get_links(attrs['audioLinks'])
+                    if url is not None:
+                        tmp = (attrs['code'], attrs['shortTitle'], attrs['stationType'], url, icon)
+                        lst.append(tmp)
     return lst
-
 
 def create_m3u(lst, outfl = m3ufile):
     num = 1
@@ -84,7 +112,6 @@ def create_m3u(lst, outfl = m3ufile):
     f = codecs_open(outfl, 'w', encoding = "utf-8")
     f.write(txt)
     f.close()
-
 
 def convert(stats, epg, epgfl = epgfile):
     impl = miniDom.getDOMImplementation()
@@ -177,7 +204,7 @@ def convert(stats, epg, epgfl = epgfile):
 
 def log(message, debug = True):
     if debug:
-        if addon.getSetting('debug') in (True, 'true'):
+        if addon().getSetting('debug') in (True, 'true'):
             level = xbmc.LOGDEBUG
         else:
             return
@@ -186,14 +213,12 @@ def log(message, debug = True):
     message = message if PY3 or not isinstance(message, unicode) else message.encode('utf-8')
     xbmc.log("%s: %s" % (addonname, message), level = level)
 
-
 def notify(text, backgr = False, error = False):
-    if backgr and addon.getSetting('notif') not in (True, 'true'):
+    if backgr and addon().getSetting('notif') not in (True, 'true'):
         return
     text = encode(text)
-    icon = xbmcgui.NOTIFICATION_ERROR  if error else addon.getAddonInfo('icon')
+    icon = xbmcgui.NOTIFICATION_ERROR  if error else addon().getAddonInfo('icon')
     xbmcgui.Dialog().notification(addonname, text, icon, 4500)
-
 
 def jsonrequest(url):
     log(url)
@@ -208,7 +233,6 @@ def jsonrequest(url):
         log(repr(e.read()))
     except Exception as e:
         log(repr(e))
-
 
 def run():
     stations = get_stations()
@@ -233,12 +257,10 @@ class BackgroundService(xbmc.Monitor):
     def __init__(self):
         log('service started', False)
 
-
     def update(self):
         res = run()
         note, error = (LANG(30201), False) if not res else (LANG(30202), True)
         notify(note, True, error)
-
 
     def tick(self):
         if isfile(epgfile) and isfile(m3ufile):
@@ -260,5 +282,4 @@ if __name__ == '__main__':
             monitor.tick()
         log('service stopped', False)
         del monitor
-        del addon
         sys.exit()
