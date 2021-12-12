@@ -7,7 +7,9 @@
         <setting label="30103" type="text" id="epg" enable="!eq(-3,6)" default="cro_epg.xml"/>
         <setting label="30106" help="30116" type="enum" id="pastdays" values="1|2|3|4|5|6|7|8|9|10|11|12|13|14" default="6"/>
         <setting label="30107" help="30117" type="enum" id="futudays" values="1|2|3|4|5|6|7|8|9|10|11|12|13|14" default="6"/>
-        <setting label="30104" type="enum" id="bitrate" values="128|256" default="1"/>
+        <setting label="30118" type="enum" id="codec" values="MP3|AAC" default="0"/>
+        <setting label="30119" type="enum" id="quality" lvalues="30122|30121|30120" default="1"/>
+        <setting label="30123" type="bool" id="flac" enable="eq(-1,2)" default="false" />
         <setting label="30108" type="folder" id="downfolder" source="local" default="" />
         <setting label="30109" type="bool" id="debug" default="false" />
         <setting label="30110" type="bool" id="notif" default="true" />
