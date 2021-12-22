@@ -107,7 +107,7 @@ def create_m3u(lst, outfl = m3ufile):
     txt = '#EXTM3U\n'
     for i in lst:
         group = LANG(30203) if i[2] == 'regional' else LANG(30204)
-        txt += '#EXTINF:-1, tvg-chno="%i" tvg-name="%s" tvg-id="%s" tvg-logo="%s" group-title="%s" radio="true", %s\n%s\n' % (num,i[1],i[0],i[4],group,i[1],i[3])
+        txt += '#EXTINF:-1, tvg-chno="%i" tvg-name="%s" tvg-id="%s" tvg-logo="%s" group-title="%s" radio="true", %s\n%s\n' % (num,i[1],"crolive_"+i[0],i[4],group,i[1],i[3])
         num += 1
     f = codecs_open(outfl, 'w', encoding = "utf-8")
     f.write(txt)
@@ -127,7 +127,7 @@ def convert(stats, epg, epgfl = epgfile):
         displNode.appendChild(displText)
         displNode.setAttribute('lang', 'cs')
         channNode.appendChild(displNode)
-        channNode.setAttribute('id', stat[0])
+        channNode.setAttribute('id', "crolive_"+stat[0])
         root.appendChild(channNode)
     # create programms
     for stat in stats:
@@ -194,7 +194,7 @@ def convert(stats, epg, epgfl = epgfile):
                 prgNode.appendChild(iconNode)
             prgNode.setAttribute('start', convertTime(item['start']))
             prgNode.setAttribute('stop', convertTime(item['stop']))
-            prgNode.setAttribute('channel', stat[0])
+            prgNode.setAttribute('channel', "crolive_"+stat[0])
             root.appendChild(prgNode)
     with codecs_open(epgfl, "w", "utf-8") as out:
         dcmnt.writexml(out, addindent = '    ', newl = '\n', encoding = "utf-8")
