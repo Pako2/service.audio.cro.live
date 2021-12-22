@@ -1,3 +1,6 @@
+1.4.1 (2021-12-22) - Opravena chyba - nefungovalo stahování ve Windows (znak ":" v názvu souboru)
+                   - Opravena chyba - odstraněna možnost konfliktů ID kanálu (ID je nyní doplněno prefixem "crolive_")
+
 1.4.0 (2021-12-12) - Možnost výběru preferovaného kodeku (MP3 nebo AAC)
                    - Kvalita (bitrate) se volí z možností Nejvyšší|Střední|Nejnižší
                    - Pro nejvyšší kvalitu je možné povolit stream typu FLAC (je-li k dispozici)
