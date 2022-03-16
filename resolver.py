@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import xbmc
+from xbmcgui import Dialog
 from service import LANG, addonname, encode, decode, stations_url, codec
 from service import PY3, jsonrequest, log, notify
 from bs4 import BeautifulSoup
@@ -108,18 +109,31 @@ def findshowid(statid, title):
                             return itm['id']
     return ''
 
-def selal(als):
-    if 'ondemand' in [al['linkType'] for al in als]:
-        als2 = [al for al in als if al['linkType'] == 'ondemand' and al['variant'] == 'hls']
-        if len(als2):
-            return als2[0]
-    if 'download' in [al['linkType'] for al in als]:
-        als2 = [al for al in als if al['linkType']=='download' and al['variant'] == ('aac', 'mp3')[codec]]
-        if len(als2):
-            return als2[0]
-        als2 = [al for al in als if al['linkType']=='download']
-        if len(als2):
-            return als2[0]
+def selal(als, play):
+    if play:
+        if 'download' in [al['linkType'] for al in als]:
+            als2 = [al for al in als if al['linkType']=='download' and al['variant'] == ('aac', 'mp3')[codec]]
+            if len(als2):
+                return als2[0]
+            als2 = [al for al in als if al['linkType']=='download']
+            if len(als2):
+                return als2[0]
+        if 'ondemand' in [al['linkType'] for al in als]:
+            als2 = [al for al in als if al['linkType'] == 'ondemand' and al['variant'] == 'hls']
+            if len(als2):
+                return als2[0]
+    else:
+        if 'ondemand' in [al['linkType'] for al in als]:
+            als2 = [al for al in als if al['linkType'] == 'ondemand' and al['variant'] == 'hls']
+            if len(als2):
+                return als2[0]
+        if 'download' in [al['linkType'] for al in als]:
+            als2 = [al for al in als if al['linkType']=='download' and al['variant'] == ('aac', 'mp3')[codec]]
+            if len(als2):
+                return als2[0]
+            als2 = [al for al in als if al['linkType']=='download']
+            if len(als2):
+                return als2[0]
 
 def get_audio(kind):
     chann_dict = {}
@@ -218,7 +232,7 @@ def get_audio(kind):
                                         if 'asset' in attrs and 'url' in attrs['asset'] and attrs['asset']['url']:
                                             icon = attrs['asset']['url']
                                         if 'audioLinks' in attrs:
-                                            al = selal(attrs['audioLinks'])
+                                            al = selal(attrs['audioLinks'], kind == 'play')
                                             if al is not None:
                                                 if kind == 'down' and 'playableTill' in al:
                                                     notify(LANG(30409))
