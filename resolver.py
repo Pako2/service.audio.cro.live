@@ -110,16 +110,16 @@ def findshowid(statid, title):
 
 def selal(als):
     if 'ondemand' in [al['linkType'] for al in als]:
-        als = [al for al in als if al['linkType'] == 'ondemand' and al['variant'] == 'hls']
-        if len(als):
-            return als[0]
+        als2 = [al for al in als if al['linkType'] == 'ondemand' and al['variant'] == 'hls']
+        if len(als2):
+            return als2[0]
     if 'download' in [al['linkType'] for al in als]:
-        als = [al for al in als if al['linkType']=='download' and al['variant'] == ('aac', 'mp3')[codec]]
-        if len(als):
-            return als[0]
-        als = [al for al in als if al['linkType']=='download']
-        if len(als):
-            return als[0]
+        als2 = [al for al in als if al['linkType']=='download' and al['variant'] == ('aac', 'mp3')[codec]]
+        if len(als2):
+            return als2[0]
+        als2 = [al for al in als if al['linkType']=='download']
+        if len(als2):
+            return als2[0]
 
 def get_audio(kind):
     chann_dict = {}
