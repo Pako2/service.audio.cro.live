@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import xbmc
-from service import LANG, addonname, encode, decode, stations_url
+from service import LANG, addonname, encode, decode, stations_url, codec
 from service import PY3, jsonrequest, log, notify
 from bs4 import BeautifulSoup
 
