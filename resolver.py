@@ -6,6 +6,7 @@ from service import PY3, jsonrequest, log, notify
 from bs4 import BeautifulSoup
 
 base_url = "https://api.mujrozhlas.cz/"
+merid = xbmc.getRegion('meridiem')
 
 def okdialog(message):
     if PY3:
@@ -16,8 +17,8 @@ def getNumbers(txt):
     newstr = ''.join((ch if ch in '0123456789' else ' ') for ch in txt)
     return [int(i) for i in newstr.split()]
 
-# it must not depend on the user's date and time format settings !
-def parsedatetime(_short, _long):
+# The date obtained must be independent of the date format set by the user !
+def parsedate(_short, _long):
     ix = _short.find(' ')
     lnums = getNumbers(_long)
     snums = getNumbers(_short[:ix])
@@ -26,6 +27,17 @@ def parsedatetime(_short, _long):
     snums.remove(day)
     month = min(snums)
     return '%i-%02d-%02d' % (year, month, day)
+
+# The time stamp obtained must be independent of the time format set by the user !
+def parsetime(txt):
+    h, m = getNumbers(txt)
+    if merid.__len__() > 2:
+        AM, PM = merid.split('/')
+        if txt.endswith(AM) and h == 12:
+            h = 0
+        elif txt.endswith(PM) and h < 12:
+            h += 12
+    return '%02d:%02d' % (h, m)
 
 def getepisodes(showid, offset, limit = 1):
     url = base_url+'shows/%s/episodes?page[limit]=%i&page[offset]=%i' % (showid, limit, offset)
@@ -87,7 +99,7 @@ def findshowid(statid, title):
         limit = 30
         for i in range(0, count, limit):
             showdata = getshows(statid, limit, i)
-            if 'data' in showdata:
+            if showdata is not None and 'data' in showdata:
                 data = showdata['data']
                 for itm in data:
                     if 'attributes' in itm and 'title' in itm['attributes'] and 'id' in itm:
@@ -95,6 +107,19 @@ def findshowid(statid, title):
                         if _title == title:
                             return itm['id']
     return ''
+
+def selal(als):
+    if 'ondemand' in [al['linkType'] for al in als]:
+        als = [al for al in als if al['linkType'] == 'ondemand' and al['variant'] == 'hls']
+        if len(als):
+            return als[0]
+    if 'download' in [al['linkType'] for al in als]:
+        als = [al for al in als if al['linkType']=='download' and al['variant'] == ('aac', 'mp3')[codec]]
+        if len(als):
+            return als[0]
+        als = [al for al in als if al['linkType']=='download']
+        if len(als):
+            return als[0]
 
 def get_audio(kind):
     chann_dict = {}
@@ -116,13 +141,12 @@ def get_audio(kind):
     plot = xbmc.getInfoLabel('ListItem.Plot')
     icon = xbmc.getInfoLabel('ListItem.Icon')
     channel = xbmc.getInfoLabel('ListItem.ChannelName')
-    starttime = xbmc.getInfoLabel('ListItem.StartTime')
     statid = None
     if decode(channel) in chann_dict:
         statid = decode(chann_dict[decode(channel)])
     if statid is not None:
-        day = parsedatetime(xbmc.getInfoLabel('ListItem.Date'), xbmc.getInfoLabel('ListItem.StartDate'))
-        starttime = starttime if len(starttime) == 5 else '0' + starttime
+        day = parsedate(xbmc.getInfoLabel('ListItem.Date'), xbmc.getInfoLabel('ListItem.StartDate'))
+        starttime = parsetime(xbmc.getInfoLabel('ListItem.StartTime'))
         since = '%sT%s' % (day, starttime)
         log("since = " + repr(since))
         url = base_url + 'schedule-day?filter[day]=' + day + '&filter[stations.id]=' + statid
@@ -194,12 +218,12 @@ def get_audio(kind):
                                         if 'asset' in attrs and 'url' in attrs['asset'] and attrs['asset']['url']:
                                             icon = attrs['asset']['url']
                                         if 'audioLinks' in attrs:
-                                            al = attrs['audioLinks'][0]
-                                            if len(al):
+                                            al = selal(attrs['audioLinks'])
+                                            if al is not None:
                                                 if kind == 'down' and 'playableTill' in al:
                                                     notify(LANG(30409))
                                                     return
-                                                link = attrs['audioLinks'][0]['url']
+                                                link = al['url']
                                                 res.append((link, title, attrs['since'][:-9].replace('T', ' '), descr, part, total))
                                 res.sort(key = lambda x:(x[1], x[4]))
                                 log("result = "+repr(res))
