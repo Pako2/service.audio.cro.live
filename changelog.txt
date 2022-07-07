@@ -1,3 +1,6 @@
+1.5.0 (2022-07-07) - Přidána možnost přehrávání podcastů
+                   - Přidána možnost přehrávání živého vysílání bez PVR
+
 1.4.2 (2022-03-16) - Opravena chyba - nefungovalo hledání v archivu, když linkType=='ondemand' a variant=='hls'
                    - Opravena chyba - nefungovalo hledání v archivu, když uživatel měl nastavený 12-hodinový formát
 

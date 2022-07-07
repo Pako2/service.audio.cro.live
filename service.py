@@ -3,6 +3,7 @@
 import xbmc
 import xbmcgui
 import xbmcaddon
+
 from xml.dom import minidom as miniDom
 from codecs import open as codecs_open
 from datetime import datetime as dt
@@ -10,6 +11,8 @@ from datetime import timedelta as td
 from json import loads
 from os.path import isfile, getmtime, join
 from sys import version_info
+from xbmcvfs import translatePath
+from PIL import Image, ImageEnhance
 
 PY3 = version_info[0] == 3
 
@@ -29,6 +32,8 @@ stations_url = "https://api.mujrozhlas.cz/stations"
 codec = int(addon().getSetting('codec'))
 quality = int(addon().getSetting('quality'))
 flac = addon().getSetting('flac') == 'true'
+
+fanart = translatePath("special://temp/crolivefanart.png")
 
 pastdays = int(addon().getSetting('pastdays'))
 futudays = int(addon().getSetting('futudays'))
@@ -252,6 +257,7 @@ def run():
     return 2
 
 
+
 class BackgroundService(xbmc.Monitor):
 
     def __init__(self):
@@ -274,6 +280,10 @@ class BackgroundService(xbmc.Monitor):
 
 
 if __name__ == '__main__':
+    if not isfile(fanart):
+        _fanart = Image.open(addon().getAddonInfo('fanart'))
+        enhancer = ImageEnhance.Contrast(_fanart)
+        enhancer.enhance(0.25).save(fanart)
     if period:
         monitor = BackgroundService()
         while not monitor.abortRequested():

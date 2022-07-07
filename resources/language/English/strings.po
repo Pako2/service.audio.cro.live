@@ -94,6 +94,18 @@ msgctxt "#30204"
 msgid "Allover"
 msgstr ""
 
+msgctxt "#30205"
+msgid "Podcasts"
+msgstr ""
+
+msgctxt "#30206"
+msgid "Live broadcast - nationwide station"
+msgstr ""
+
+msgctxt "#30207"
+msgid "Live broadcast - regional station"
+msgstr ""
+
 msgctxt "#30301"
 msgid "*   Play from archive   *"
 msgstr ""
@@ -142,7 +154,4 @@ msgctxt "#30410"
 msgid "Unexpectedly, more than one matching record\nwas found in the archive. The first one was chosen."
 msgstr ""
 
-msgctxt "#30500"
-msgid "This add-on is a service only and does not provide any playable content."
-msgstr ""
 

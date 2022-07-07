@@ -94,6 +94,18 @@ msgctxt "#30204"
 msgid "Allover"
 msgstr "Celoplošné"
 
+msgctxt "#30205"
+msgid "Podcasts"
+msgstr "Podcasty"
+
+msgctxt "#30206"
+msgid "Live broadcast - nationwide station"
+msgstr "Živé vysílání - celoplošné stanice"
+
+msgctxt "#30207"
+msgid "Live broadcast - regional station"
+msgstr "Živé vysílání - regionální stanice"
+
 msgctxt "#30301"
 msgid "*   Play from archive   *"
 msgstr "*   Přehrát z archivu   *"
@@ -142,9 +154,6 @@ msgctxt "#30410"
 msgid "Unexpectedly, more than one matching record\nwas found in the archive. The first one was chosen."
 msgstr "V archivu bylo nečekaně nalezeno více než jeden\nodpovídajících záznamů. Vybrán byl první z nich."
 
-msgctxt "#30500"
-msgid "This add-on is a service only and does not provide any playable content."
-msgstr "Tento doplněk je pouze služba a neposkytuje žádný přehratelný obsah."
 
 
 
