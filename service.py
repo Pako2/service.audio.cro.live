@@ -12,7 +12,16 @@ from json import loads
 from os.path import isfile, getmtime, join
 from sys import version_info
 from xbmcvfs import translatePath
-from PIL import Image, ImageEnhance
+try:
+    from PIL import Image, ImageEnhance
+except ImportError as e:
+    import sys
+    sys.path.append('/storage/.kodi/addons/script.module.pil/lib')
+    try:
+        from PIL import Image, ImageEnhance
+    except ImportError as ee:
+        Image = None
+        
 
 PY3 = version_info[0] == 3
 
@@ -281,9 +290,13 @@ class BackgroundService(xbmc.Monitor):
 
 if __name__ == '__main__':
     if not isfile(fanart):
-        _fanart = Image.open(addon().getAddonInfo('fanart'))
-        enhancer = ImageEnhance.Contrast(_fanart)
-        enhancer.enhance(0.25).save(fanart)
+        if Image is not None:
+            _fanart = Image.open(addon().getAddonInfo('fanart'))
+            enhancer = ImageEnhance.Contrast(_fanart)
+            enhancer.enhance(0.25).save(fanart)
+        else:
+        	fanart = addon().getAddonInfo('fanart')
+
     if period:
         monitor = BackgroundService()
         while not monitor.abortRequested():

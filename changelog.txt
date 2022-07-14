@@ -1,3 +1,5 @@
+1.5.1 (2022-07-14) - oprava - doplněk nefungoval na některých platformách (PIL import error)
+
 1.5.0 (2022-07-07) - Přidána možnost přehrávání podcastů
                    - Přidána možnost přehrávání živého vysílání bez PVR
 
