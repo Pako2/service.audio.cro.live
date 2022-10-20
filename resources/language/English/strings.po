@@ -99,11 +99,27 @@ msgid "Podcasts"
 msgstr ""
 
 msgctxt "#30206"
-msgid "Live broadcast - nationwide station"
+msgid "Live broadcast - nationwide stations"
 msgstr ""
 
 msgctxt "#30207"
-msgid "Live broadcast - regional station"
+msgid "Live broadcast - regional stations"
+msgstr ""
+
+msgctxt "#30208"
+msgid "*   Add to Selection   *"
+msgstr ""
+
+msgctxt "#30209"
+msgid "*   Remove from Selection   *"
+msgstr ""
+
+msgctxt "#30210"
+msgid "Selection"
+msgstr ""
+
+msgctxt "#30211"
+msgid "All"
 msgstr ""
 
 msgctxt "#30301"

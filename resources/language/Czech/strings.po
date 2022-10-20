@@ -99,12 +99,28 @@ msgid "Podcasts"
 msgstr "Podcasty"
 
 msgctxt "#30206"
-msgid "Live broadcast - nationwide station"
+msgid "Live broadcast - nationwide stations"
 msgstr "Živé vysílání - celoplošné stanice"
 
 msgctxt "#30207"
-msgid "Live broadcast - regional station"
+msgid "Live broadcast - regional stations"
 msgstr "Živé vysílání - regionální stanice"
+
+msgctxt "#30208"
+msgid "*   Add to Selection   *"
+msgstr "*   Přidat do Výběru   *"
+
+msgctxt "#30209"
+msgid "*   Remove from Selection   *"
+msgstr "*   Odebrat z Výběru   *"
+
+msgctxt "#30210"
+msgid "Selection"
+msgstr "Výběr"
+
+msgctxt "#30211"
+msgid "All"
+msgstr "Všechny"
 
 msgctxt "#30301"
 msgid "*   Play from archive   *"

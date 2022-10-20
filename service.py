@@ -36,6 +36,8 @@ def addon():
 
 addonname   = addon().getAddonInfo('name')
 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:75.0) Gecko/20100101 Firefox/75.0", "Content-Type":"application/json"}
+headers2 = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:75.0) Gecko/20100101 Firefox/75.0', 'Content-Type': 'text/xml; charset=utf-8'}
+
 api_url = "https://api.rozhlas.cz/data/v2/"
 stations_url = "https://api.mujrozhlas.cz/stations"
 codec = int(addon().getSetting('codec'))
@@ -43,6 +45,9 @@ quality = int(addon().getSetting('quality'))
 flac = addon().getSetting('flac') == 'true'
 
 fanart = translatePath("special://temp/crolivefanart.png")
+dictfile  = join(translatePath(addon().getAddonInfo('profile')), 'image_dict.json')
+favfile  = join(translatePath(addon().getAddonInfo('profile')), 'fav_list.json')
+favscript = join(translatePath(addon().getAddonInfo('path')), 'favorites.py')
 
 pastdays = int(addon().getSetting('pastdays'))
 futudays = int(addon().getSetting('futudays'))
@@ -233,6 +238,18 @@ def notify(text, backgr = False, error = False):
     text = encode(text)
     icon = xbmcgui.NOTIFICATION_ERROR  if error else addon().getAddonInfo('icon')
     xbmcgui.Dialog().notification(addonname, text, icon, 4500)
+
+def xmlrequest(url):
+    req = Request(url, headers = headers2)
+    try:
+        resp = urlopen(req)
+        if resp.getcode() == 200:
+            html = resp.read()
+            return html
+    except HTTPError as e:
+        log(repr(e.read()))
+    except Exception as e:
+        log(repr(e))
 
 def jsonrequest(url):
     log(url)

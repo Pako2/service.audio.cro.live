@@ -1,3 +1,5 @@
+1.6.0 (2022-10-20) - vylepšení nabídky podcastů (místo dosavadní nabídky všech podcastů je nyní vložena subnabídka s položkami "Všechny", "A - Ž" a "Výběr")
+
 1.5.1 (2022-07-14) - oprava - doplněk nefungoval na některých platformách (PIL import error)
 
 1.5.0 (2022-07-07) - Přidána možnost přehrávání podcastů
